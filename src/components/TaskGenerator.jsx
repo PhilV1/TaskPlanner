@@ -1,4 +1,4 @@
-import Panel from './TaskPanel';
+import TaskPanel from './TaskPanel';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 function TaskGenerator({ data, handleClickSave, handleClickTask, loading }) {
@@ -10,22 +10,19 @@ function TaskGenerator({ data, handleClickSave, handleClickTask, loading }) {
           color={'#22c55e'}
           loading={loading}
           size={50}
-          className="my-8"
+          className="m-6"
         />
       ) : (
-        <div className="flex">
-          <Panel handleClickSave={handleClickSave}>{data}</Panel>
-          {/* <button className="bg-red-500 h-fit " onClick={handleClickSave}>
-            Save
-          </button> */}
+        <div className="flex flex-col">
+          <TaskPanel handleClickSave={handleClickSave}>{data}</TaskPanel>{' '}
+          <button
+            className="bg-gray-600 rounded-b-lg text-lg text-white font-medium p-2 hover:bg-green-600 duration-200 ease-in-out"
+            onClick={handleClickTask}
+          >
+            Random Task
+          </button>
         </div>
       )}
-      <button
-        className="bg-white rounded-md text-xl font-medium p-2 hover:bg-green-500 duration-200 ease-in-out"
-        onClick={handleClickTask}
-      >
-        Generate Task
-      </button>
     </div>
   );
 }

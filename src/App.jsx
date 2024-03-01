@@ -50,16 +50,20 @@ function App() {
     const newTodo = { id: todos.length + 1, text: data, completed: false };
     setTodos([...todos, newTodo]);
     localStorage.setItem('Task', JSON.stringify([...todos, newTodo]));
+    fetchData();
   };
 
   function handleSubmit(e) {
     e.preventDefault();
-    const newTodo = { id: todos.length + 1, text: term, completed: false };
-    setTodos([...todos, newTodo]);
-    localStorage.setItem('Task', JSON.stringify([...todos, newTodo]));
-    setTerm('');
-  }
 
+    if (term !== '') {
+      const newTodo = { id: todos.length + 1, text: term, completed: false };
+      setTodos([...todos, newTodo]);
+      localStorage.setItem('Task', JSON.stringify([...todos, newTodo]));
+    } else {
+      alert('Please enter a task');
+    }
+  }
   function handleChange(e) {
     setTerm(e.target.value);
   }
@@ -98,12 +102,13 @@ function App() {
       <div>
         <div className="flex flex-col items-center gap-2 mt-4">
           <Searchbar handleSubmit={handleSubmit} handleChange={handleChange} />
+
           {/* List Item */}
-          <ul className="taskList ">
+          <ul className="taskList sm:w-96 min-w-60 ">
             {todos.map((todo) => (
               <li
                 key={todo.id}
-                className={`bg-white listItem border rounded-md w-[20rem] px-2 mb-2 flex justify-between`}
+                className={`bg-white listItem border rounded-md sm:w-96 min-w-60 px-2 mb-2 flex justify-between`}
               >
                 <p
                   className={`${
