@@ -1,9 +1,10 @@
-import React from 'react';
+import Panel from './Panel';
+import ClipLoader from 'react-spinners/ClipLoader';
 
-function TaskGenerator() {
+function TaskGenerator({ data, handleClickSave, handleClickTask, loading }) {
   return (
-    <div className="flex justify-center items-center h-screen bg-slate-500 flex-col ">
-      <h1 className="font-bold text-white  text-3xl">Task generator.</h1>
+    <div className="flex  items-center bg-slate-500 flex-col pt-6 ">
+      <h1 className="font-bold text-white  text-3xl">TaskPlanner</h1>
       {loading ? (
         <ClipLoader
           color={'#22c55e'}
@@ -13,9 +14,7 @@ function TaskGenerator() {
         />
       ) : (
         <div className="flex">
-          {/* Panel start */}
           <Panel>{data}</Panel>
-          {/* Panel end */}
           <button className="bg-red-500 h-fit my-8" onClick={handleClickSave}>
             Save
           </button>
@@ -25,7 +24,7 @@ function TaskGenerator() {
         className="bg-white rounded-md text-xl font-medium p-2 hover:bg-green-500 duration-200 ease-in-out"
         onClick={handleClickTask}
       >
-        Another Task
+        Generate Task
       </button>
     </div>
   );
