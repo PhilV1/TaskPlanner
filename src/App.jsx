@@ -98,7 +98,7 @@ function App() {
       <div>
         <div className="flex flex-col items-center gap-2 mt-4">
           <Searchbar handleSubmit={handleSubmit} handleChange={handleChange} />
-
+          {/* List Item */}
           <ul className="taskList ">
             {todos.map((todo) => (
               <li
@@ -126,6 +126,7 @@ function App() {
               </li>
             ))}
           </ul>
+          {/* ListItem end */}
         </div>
       </div>
     </div>

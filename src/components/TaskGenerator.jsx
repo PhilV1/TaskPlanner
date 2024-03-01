@@ -1,4 +1,4 @@
-import Panel from './Panel';
+import Panel from './TaskPanel';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 function TaskGenerator({ data, handleClickSave, handleClickTask, loading }) {
@@ -14,10 +14,10 @@ function TaskGenerator({ data, handleClickSave, handleClickTask, loading }) {
         />
       ) : (
         <div className="flex">
-          <Panel>{data}</Panel>
-          <button className="bg-red-500 h-fit my-8" onClick={handleClickSave}>
+          <Panel handleClickSave={handleClickSave}>{data}</Panel>
+          {/* <button className="bg-red-500 h-fit " onClick={handleClickSave}>
             Save
-          </button>
+          </button> */}
         </div>
       )}
       <button
