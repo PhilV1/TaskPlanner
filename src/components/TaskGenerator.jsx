@@ -13,10 +13,10 @@ function TaskGenerator({ data, handleClickSave, handleClickTask, loading }) {
           className="m-6"
         />
       ) : (
-        <div className="flex flex-col">
+        <div className="flex flex-col sm:w-96 w-64">
           <TaskPanel handleClickSave={handleClickSave}>{data}</TaskPanel>{' '}
           <button
-            className="bg-gray-600 rounded-b-lg text-lg text-white font-medium p-2 hover:bg-green-600 duration-200 ease-in-out"
+            className="bg-gray-600 rounded-b-lg text-lg text-white font-medium p-1 hover:bg-green-600 duration-300 ease-in-out"
             onClick={handleClickTask}
           >
             Random Task

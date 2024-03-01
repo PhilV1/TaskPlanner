@@ -60,6 +60,7 @@ function App() {
       const newTodo = { id: todos.length + 1, text: term, completed: false };
       setTodos([...todos, newTodo]);
       localStorage.setItem('Task', JSON.stringify([...todos, newTodo]));
+      setTerm('');
     } else {
       alert('Please enter a task');
     }
@@ -104,7 +105,7 @@ function App() {
           <Searchbar handleSubmit={handleSubmit} handleChange={handleChange} />
 
           {/* List Item */}
-          <ul className="taskList sm:w-96 min-w-60 ">
+          <ul className="taskList sm:w-96 w-64  ">
             {todos.map((todo) => (
               <li
                 key={todo.id}
@@ -115,7 +116,7 @@ function App() {
                     todo.completed
                       ? 'text-red-600 font-medium line-through '
                       : ''
-                  }   break-words`}
+                  }   break-all`}
                 >
                   {todo.text}
                 </p>

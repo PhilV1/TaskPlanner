@@ -11,7 +11,7 @@ function Panel({ children, className, handleClickSave, ...rest }) {
     <div className={classes} {...rest}>
       {children}{' '}
       <button onClick={handleClickSave}>
-        <MdPostAdd className="text-2xl ml-2 hover:text-green-600" />
+        <MdPostAdd className="text-2xl ml-2 hover:text-green-600 duration-300 ease-in-out" />
       </button>
     </div>
   );
