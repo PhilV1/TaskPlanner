@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { FaTrash } from 'react-icons/fa';
-import { ImCheckmark } from 'react-icons/im';
-import Button from './components/Button';
 import TaskGenerator from './components/TaskGenerator';
 import Searchbar from './components/Searchbar';
+import TaskList from './components/TaskList';
+import Container from './components/Container';
 
 const url = 'https://www.boredapi.com/api/activity';
 
@@ -47,7 +46,8 @@ function App() {
   };
 
   const handleClickSave = () => {
-    const newTodo = { id: todos.length + 1, text: data, completed: false };
+    const uniqueID = Math.floor(Math.random() * 100 * (Math.random() * 100));
+    const newTodo = { id: uniqueID + 1, text: data, completed: false };
     setTodos([...todos, newTodo]);
     localStorage.setItem('Task', JSON.stringify([...todos, newTodo]));
     fetchData();
@@ -60,7 +60,6 @@ function App() {
       const newTodo = { id: todos.length + 1, text: term, completed: false };
       setTodos([...todos, newTodo]);
       localStorage.setItem('Task', JSON.stringify([...todos, newTodo]));
-      setTerm('');
     } else {
       alert('Please enter a task');
     }
@@ -92,50 +91,22 @@ function App() {
   }
 
   return (
-    <div className="flex h-screen bg-slate-500 flex-col ">
+    <>
       <TaskGenerator
         data={data}
         handleClickTask={handleClickTask}
         handleClickSave={handleClickSave}
         loading={loading}
       />
-
-      <div>
-        <div className="flex flex-col items-center gap-2 mt-4">
-          <Searchbar handleSubmit={handleSubmit} handleChange={handleChange} />
-
-          {/* List Item */}
-          <ul className="taskList sm:w-96 w-64  ">
-            {todos.map((todo) => (
-              <li
-                key={todo.id}
-                className={`bg-white listItem border rounded-md sm:w-96 min-w-60 px-2 mb-2 flex justify-between`}
-              >
-                <p
-                  className={`${
-                    todo.completed
-                      ? 'text-red-600 font-medium line-through '
-                      : ''
-                  }   break-all`}
-                >
-                  {todo.text}
-                </p>
-
-                <div className="button-wrapper flex">
-                  <Button primary onClick={() => handleComplete(todo.id)}>
-                    <ImCheckmark />
-                  </Button>
-                  <Button danger onClick={() => handleDelete(todo.id)}>
-                    <FaTrash />
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
-          {/* ListItem end */}
-        </div>
-      </div>
-    </div>
+      <Container>
+        <Searchbar handleSubmit={handleSubmit} handleChange={handleChange} />
+        <TaskList
+          todos={todos}
+          handleComplete={handleComplete}
+          handleDelete={handleDelete}
+        />
+      </Container>
+    </>
   );
 }
 

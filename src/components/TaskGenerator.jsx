@@ -4,7 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 function TaskGenerator({ data, handleClickSave, handleClickTask, loading }) {
   return (
     <div className="flex  items-center bg-slate-500 flex-col pt-6 ">
-      <h1 className="font-bold text-white  text-3xl">TaskPlanner</h1>
+      <h1 className="font-bold text-white  text-3xl">TaskGenerator</h1>
       {loading ? (
         <ClipLoader
           color={'#22c55e'}

@@ -7,7 +7,7 @@ function Searchbar({ handleChange, term, handleSubmit }) {
             type="text"
             onChange={handleChange}
             value={term}
-            className="rounded-l-lg px-2 py-1 w-full "
+            className="rounded-l-lg px-2 py-1 w-full focus:outline-green-600  "
             placeholder="Create a new task..."
           />
           <button
