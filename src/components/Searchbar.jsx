@@ -1,7 +1,7 @@
 function Searchbar({ handleChange, term, handleSubmit }) {
   return (
     <>
-      <form onSubmit={handleSubmit} className=" sm:w-96 w-64 ">
+      <form onSubmit={handleSubmit} className=" sm:w-96 w-64 mb-2">
         <div className="flex justify-between">
           <input
             type="text"

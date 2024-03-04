@@ -1,4 +1,4 @@
-function Container({ children }) {
+function TaskContainer({ children }) {
   return (
     <div className="flex flex-col items-center gap-2 mt-4  sm:w-96 w-64 mx-auto rounded-lg">
       <div className="sm:w-96 w-64">
@@ -11,4 +11,4 @@ function Container({ children }) {
   );
 }
 
-export default Container;
+export default TaskContainer;

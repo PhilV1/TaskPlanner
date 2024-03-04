@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import TaskGenerator from './components/TaskGenerator';
 import Searchbar from './components/Searchbar';
 import TaskList from './components/TaskList';
-import Container from './components/Container';
+import TaskContainer from './components/TaskContainer';
 
 const url = 'https://www.boredapi.com/api/activity';
 
@@ -60,6 +60,7 @@ function App() {
       const newTodo = { id: todos.length + 1, text: term, completed: false };
       setTodos([...todos, newTodo]);
       localStorage.setItem('Task', JSON.stringify([...todos, newTodo]));
+      setTerm('');
     } else {
       alert('Please enter a task');
     }
@@ -98,14 +99,18 @@ function App() {
         handleClickSave={handleClickSave}
         loading={loading}
       />
-      <Container>
-        <Searchbar handleSubmit={handleSubmit} handleChange={handleChange} />
+      <TaskContainer>
+        <Searchbar
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          term={term}
+        />
         <TaskList
           todos={todos}
           handleComplete={handleComplete}
           handleDelete={handleDelete}
         />
-      </Container>
+      </TaskContainer>
     </>
   );
 }
