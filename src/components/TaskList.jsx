@@ -2,7 +2,7 @@ import Button from './Button';
 import { FaTrash } from 'react-icons/fa';
 import { ImCheckmark } from 'react-icons/im';
 
-function TaskList({ todos, handleComplete, handleDelete }) {
+function TaskList({ todos, handleComplete, handleDelete, toogleTask }) {
   return (
     <ul className=" sm:w-96 w-64">
       {todos.map((todo) => (
