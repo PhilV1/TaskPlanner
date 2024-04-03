@@ -1,8 +1,8 @@
-import Button from './Button';
-import { FaTrash } from 'react-icons/fa';
-import { ImCheckmark } from 'react-icons/im';
+import Button from './Button'
+import { FaTrash } from 'react-icons/fa'
+import { ImCheckmark } from 'react-icons/im'
 
-function TaskList({ todos, handleComplete, handleDelete, toogleTask }) {
+function TaskList({ todos, handleComplete, handleDelete, editTask }) {
   return (
     <ul className=" sm:w-96 w-64">
       {todos.map((todo) => (
@@ -29,7 +29,7 @@ function TaskList({ todos, handleComplete, handleDelete, toogleTask }) {
         </li>
       ))}
     </ul>
-  );
+  )
 }
 
-export default TaskList;
+export default TaskList
