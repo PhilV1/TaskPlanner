@@ -4,15 +4,17 @@ import TaskGenerator from './components/TaskGenerator'
 import Searchbar from './components/Searchbar'
 import TaskList from './components/TaskList'
 import TaskContainer from './components/TaskContainer'
+import { GiUltrasound } from 'react-icons/gi'
 
-const url = 'https://www.boredapi.com/api/activity'
+const url =
+  'https://thingproxy.freeboard.io/fetch/https://bored-api.appbrewery.com/random'
 
 function App() {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
   const [term, setTerm] = useState('')
   const [todos, setTodos] = useState([])
-
+  console.log(data)
   const fetchData = async () => {
     try {
       setLoading(true)
