@@ -1,80 +1,83 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import TaskGenerator from './components/TaskGenerator'
-import Searchbar from './components/Searchbar'
-import TaskList from './components/TaskList'
-import TaskContainer from './components/TaskContainer'
-import { GiUltrasound } from 'react-icons/gi'
+import axios from "axios";
+import { useState, useEffect } from "react";
+import TaskGenerator from "./components/TaskGenerator";
+import Searchbar from "./components/Searchbar";
+import TaskList from "./components/TaskList";
+import TaskContainer from "./components/TaskContainer";
+// import { GiUltrasound } from "react-icons/gi";
 
-const url =
-  'https://thingproxy.freeboard.io/fetch/https://bored-api.appbrewery.com/random'
+const url = `https://dummyjson.com/todos/`;
 
 function App() {
-  const [loading, setLoading] = useState(true)
-  const [data, setData] = useState([])
-  const [term, setTerm] = useState('')
-  const [todos, setTodos] = useState([])
-  console.log(data)
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [term, setTerm] = useState("");
+  const [todos, setTodos] = useState([]);
+
   const fetchData = async () => {
     try {
-      setLoading(true)
-      const response = await axios.get(url)
-      const data = response.data
-      if (data) {
-        setData(data.activity)
+      setLoading(true);
+      const response = await axios.get(url);
+      const todosArray = response.data.todos;
+
+      if (todosArray && todosArray.length > 0) {
+        const randomTodo =
+          todosArray[Math.floor(Math.random() * todosArray.length)].todo;
+
+        setData(randomTodo);
       } else {
-        setData('No activity found')
+        setData("No activity found");
       }
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      console.log('Error', error)
-      setLoading(false)
+      console.log("Error", error);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    const storedTask = localStorage.getItem('Task')
+    const storedTask = localStorage.getItem("Task");
     if (storedTask) {
-      setTodos(JSON.parse(storedTask))
+      setTodos(JSON.parse(storedTask));
     }
-  }, [])
+  }, []);
 
   const handleClickTask = () => {
-    fetchData()
-  }
+    fetchData();
+  };
 
   const handleClickSave = () => {
-    const uniqueID = Math.floor(Math.random() * 100 * (Math.random() * 100))
-    const newTodo = { id: uniqueID + 1, text: data, completed: false }
-    setTodos([...todos, newTodo])
-    localStorage.setItem('Task', JSON.stringify([...todos, newTodo]))
-    fetchData()
-  }
+    const uniqueID = Math.floor(Math.random() * 100 * (Math.random() * 100));
+    const newTodo = { id: uniqueID + 1, text: data, completed: false };
+    setTodos([...todos, newTodo]);
+    localStorage.setItem("Task", JSON.stringify([...todos, newTodo]));
+    fetchData();
+  };
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (term !== '') {
-      const newTodo = { id: todos.length + 1, text: term, completed: false }
-      setTodos([...todos, newTodo])
-      localStorage.setItem('Task', JSON.stringify([...todos, newTodo]))
-      setTerm('')
+    if (term !== "") {
+      const newTodo = { id: todos.length + 1, text: term, completed: false };
+      setTodos([...todos, newTodo]);
+      localStorage.setItem("Task", JSON.stringify([...todos, newTodo]));
+      setTerm("");
     } else {
-      alert('Please enter a task')
+      alert("Please enter a task");
     }
   }
   function handleChange(e) {
-    setTerm(e.target.value)
+    setTerm(e.target.value);
   }
 
   function handleDelete(id) {
-    const newTodos = todos.filter((todo) => todo.id !== id)
-    setTodos(newTodos)
-    localStorage.setItem('Task', JSON.stringify(newTodos))
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+    localStorage.setItem("Task", JSON.stringify(newTodos));
   }
 
   function handleComplete(id) {
@@ -83,14 +86,14 @@ function App() {
         const updatedTodo = {
           ...todo,
           completed: !todo.completed,
-        }
-        !updatedTodo.completed
-        return updatedTodo
+        };
+        !updatedTodo.completed;
+        return updatedTodo;
       }
-      return todo
-    })
-    setTodos(updatedTodos)
-    localStorage.setItem('Task', JSON.stringify(updatedTodos))
+      return todo;
+    });
+    setTodos(updatedTodos);
+    localStorage.setItem("Task", JSON.stringify(updatedTodos));
   }
 
   return (
@@ -114,7 +117,7 @@ function App() {
         />
       </TaskContainer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
